@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans" prefix="og: http://ogp.me/ns#" class="han-init">
+<head>
+  <meta charset="utf-8">
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+  <link rel="icon" href="/favicon.ico">
+  <title>Rain Whisper</title>
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="/lib/fancybox/jquery.fancybox-1.3.4.css">
+  <!--在这里倒入jquery 方便处理部分页面的jquery-->
+  <script src="https://cdn.staticfile.org/jquery/1.7/jquery.min.js" type="text/javascript" ></script>
+</head>
+
+<body>
+	<header class="site-header navfixed-false">
+  <div class="container">
+      <h1><a href="/" title="Rain Whisper"><span class="octicon octicon-mark-github"></span> Rain Whisper</a></h1>
+      <nav class="site-header-nav" role="navigation">
+        
+              
+              <a href="/"  class=" site-header-nav-item hvr-underline-from-center" title="首页">首页</a>
+        
+              
+              <a href="/categories/"  class=" site-header-nav-item hvr-underline-from-center" title="分类">分类</a>
+        
+              
+              <a href="/open-source/"  class=" site-header-nav-item hvr-underline-from-center" title="开源项目">开源项目</a>
+        
+              
+              <a href="/message/"  class=" site-header-nav-item hvr-underline-from-center" title="留言板">留言板</a>
+        
+      </nav>
+  </div>
+</header>
+
+	
+<section class="collection-head geopattern" data-pattern-id="基于Material样式的Angle模板开发介绍" >
+    <div class="container">
+        <div class="collection-title">
+            <h1 class="collection-header">
+                基于Material样式的Angle模板开发介绍
+            </h1>
+            
+                <div class="collection-info">
+                    <span class="meta-info">
+                        <span class="octicon octicon-calendar"></span>
+                        <time datetime="2016-11-21T08:48:52.000Z" itemprop="datePublished">2016-11-21</time>
+                    </span>
+                    
+                        <span class="meta-info">
+                            <span class="octicon octicon-file-directory"></span>
+                            <a href='/categories/前端/' title=''>前端</a>
+                        </span>
+                    
+                </div>
+            
+        </div>
+    </div>
+</section>
+	<section class="container">
+    <div class="columns">
+        <!-- -->
+        <div class="column three-fourths">
+            <article class="article-content markdown-body">
+                <p><a href="https://wrapbootstrap.com/theme/angle-bootstrap-admin-template-WB04HF123" target="_blank" rel="external">Angle</a>是一款强大的后台界面模板，提供了包括jQuery、reactjs、angular、material、backend-mean等不同开发语言以及模式的模板。使用该模板可以开发出非常漂亮的管理界面</p>
+<p><img src="http://o93mwnwp7.bkt.clouddn.com/github/angle-dash.png" alt="Angle"></p>
+<p>以下是使用Material版本的Angle的开发介绍</p>
+<a id="more"></a>
+<h1 id="环境"><a href="#环境" class="headerlink" title="环境"></a>环境</h1><p>正常开发需要从<code>seed</code>项目开始，本次使用的是<code>material-seed</code>进行开发。</p>
+<h2 id="文件夹介绍"><a href="#文件夹介绍" class="headerlink" title="文件夹介绍"></a>文件夹介绍</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div></pre></td><td class="code"><pre><div class="line">+-- app/  // 项目的打包输出目录</div><div class="line">|   +-- css/</div><div class="line">|   +-- documentation/  // 介绍文档</div><div class="line">|   +-- img/</div><div class="line">|   +-- js/</div><div class="line">|   +-- i18n/</div><div class="line">|   +-- pages/</div><div class="line">|   +-- vendor/</div><div class="line">|   +-- views/</div><div class="line">+-- master/   // 项目的开发目录</div><div class="line">|   +-- jade/ </div><div class="line">|   |   +-- pages/</div><div class="line">|   |   +-- views/</div><div class="line">|   +-- js/</div><div class="line">|   |   +-- modules/</div><div class="line">|   |   |   +-- controllers/</div><div class="line">|   |   |   +-- directives/</div><div class="line">|   |   |   +-- services/</div><div class="line">|   |   +-- custom/</div><div class="line">|   +-- sass/</div><div class="line">|   |   +-- app/</div><div class="line">|   |   +-- bootstrap/</div><div class="line">|   |   +-- themes/</div><div class="line">|   +-- gulpfile.js</div><div class="line">|   +-- package.json</div><div class="line">|   +-- bower.json</div><div class="line">+-- server/  // 模拟服务器数据交互的json文件，页面左侧的树形文件就在其中</div><div class="line">|   +-- *.json</div><div class="line">+-- vendor/    // 第三方库，由master中bower加载依赖，使用gulp在发布的时候发布到该文件夹中</div><div class="line">+-- index.html   // 入口文件</div></pre></td></tr></table></figure>
+<h2 id="开发环境"><a href="#开发环境" class="headerlink" title="开发环境"></a>开发环境</h2><p>首先需要基本的环境</p>
+<p><a href=""><img src="https://img.shields.io/npm/v/npm.svg?style=flat-square" alt="npm"></a> <a href=""><img src="https://img.shields.io/bower/v/bootstrap.svg?style=flat-square" alt="Bower"></a></p>
+<p>进入开发目录<code>master</code>,安装项目所需依赖npm包,使用命令行</p>
+<figure class="highlight cmd"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">npm install</div></pre></td></tr></table></figure>
+<p>使用bower安装所需插件，安装之前可以将所需要的插件改为自己需要的版本，比如<code>angular-material</code>可以改为最新版本</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">bower install</div></pre></td></tr></table></figure>
+<h2 id="打包发布项目"><a href="#打包发布项目" class="headerlink" title="打包发布项目"></a>打包发布项目</h2><p>如果使用less编写的样式，那么可以在<code>master</code>目录下直接运行命令</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">gulp</div></pre></td></tr></table></figure>
+<p>如果使用sass编写样式，需要在后面加入参数<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">gulp --usesass</div></pre></td></tr></table></figure></p>
+<p>这时，在服务器环境下，打开index.html文件就可以看到基本的页面内容。</p>
+<p><strong>Note:</strong></p>
+<blockquote>
+<p>在开发过程中最好一直开启gulp，保持watch的运行，这样所做改变就会立即被打包生成</p>
+</blockquote>
+<h1 id="开发"><a href="#开发" class="headerlink" title="开发"></a>开发</h1><h2 id="路由"><a href="#路由" class="headerlink" title="路由"></a>路由</h2><p>项目使用<code>ui-router</code>插件配置路由，修改添加路由的需要在<code>master/js/modules/routes/routes.config.js</code>文件中配置</p>
+<h3 id="添加新的state"><a href="#添加新的state" class="headerlink" title="添加新的state"></a>添加新的state</h3><p>在已存在的state下追加即可，格式如下</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">.state(<span class="string">'app.someroute'</span>, &#123;</div><div class="line">    <span class="attr">url</span>: <span class="string">'/some_url'</span>,</div><div class="line">    <span class="attr">templateUrl</span>: <span class="string">'path_to_template.html'</span>,</div><div class="line">    <span class="attr">controller</span>: <span class="string">'someController'</span>,</div><div class="line">    <span class="attr">resolve</span>: angular.extend(</div><div class="line">    helper.resolveFor(), &#123;</div><div class="line">    <span class="comment">// YOUR RESOLVES GO HERE</span></div><div class="line">    &#125;</div><div class="line">    )</div><div class="line">&#125;)</div></pre></td></tr></table></figure>
+<p>其中<code>resolve</code>是用于加载页面所需要的第三方vendor，配置文件参见</p>
+<h2 id="Module-与-Controller"><a href="#Module-与-Controller" class="headerlink" title="Module 与 Controller"></a>Module 与 Controller</h2><p>每个页面模块的js文件是存放于同一个文件夹中的，可以参考，<code>master/js/modules/material/</code>。</p>
+<p>因此创建一个新的模块可以在<code>custom</code>或者<code>modules</code>文件夹中添加自己的文件夹，然后添加<code>moduleName.config.js</code>和<code>moduleName.controller.js</code>文件<br>格式可参考<code>master/js/modules/material/</code>文件夹中的文件</p>
+<p>以下是一个简单的module例子<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line"><span class="meta">    'use strict'</span>;</div><div class="line"></div><div class="line">    angular</div><div class="line">        .module(<span class="string">'app.moduleName'</span>, [</div><div class="line">            <span class="string">'ngMaterial'</span></div><div class="line">        ]);</div><div class="line">&#125;)();</div></pre></td></tr></table></figure></p>
+<p>以下是controller的简单例子</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line"><span class="meta">    'use strict'</span>;</div><div class="line"></div><div class="line">    angular</div><div class="line">        .module(<span class="string">'app.moduleName'</span>)</div><div class="line">        .controller(<span class="string">'moduleNameController'</span>, moduleNameController);</div><div class="line"></div><div class="line">    moduleNameController.$inject = [];</div><div class="line">    <span class="function"><span class="keyword">function</span> <span class="title">moduleNameController</span>(<span class="params"></span>) </span>&#123;</div><div class="line">       </div><div class="line">    &#125;</div><div class="line">&#125;)();</div></pre></td></tr></table></figure>
+<p>之后，将该module添加到<code>/master/js/app.module.js</code>文件中</p>
+<h2 id="表现页面Jade-pug"><a href="#表现页面Jade-pug" class="headerlink" title="表现页面Jade (pug)"></a>表现页面Jade <em>(pug)</em></h2><p>该项目页面使用<a href="http://naltatis.github.io/jade-syntax-docs/" target="_blank" rel="external">jade</a>预编译语言编写，位于<code>/master/jade/</code>文件夹中。</p>
+<p>在该文件夹下创建对应的文件，或者创建新的文件夹，将自己的jade文件添加对应目录下。</p>
+<p>如果已经开启了gulp watch，那么此时，在<code>/app/views/</code>就可以看到对应的html文件</p>
+<h2 id="样式-Sass或Less"><a href="#样式-Sass或Less" class="headerlink" title="样式 Sass或Less"></a>样式 Sass或Less</h2><p>sass和less的开发目录位于<code>/master/sass/</code>或<code>/master/less/</code>目录下。</p>
+<p>在其中的<code>app</code>目录下创建自己项目的文件夹,在其中添加<code>**ss</code>文件。</p>
+<p>然后在<code>master/sass/app.scss</code> <em>(或less)</em> 文件中 将我们的scss文件import进来，保证编译的时候可以被编译到。</p>
+<h2 id="Hello-World！"><a href="#Hello-World！" class="headerlink" title="Hello World！"></a>Hello World！</h2><p>如果已经写好了对应的，jade文件，Scss文件以及js文件，并且已经配置好路由。</p>
+<p>这时候在服务器环境下打开，输入对应的路由地址，预览页面吧。</p>
+<p><img src="http://o93mwnwp7.bkt.clouddn.com/github/angle-view.png" alt="Hello world"></p>
+<h1 id="部署"><a href="#部署" class="headerlink" title="部署"></a>部署</h1><p>发布项目，正常项目发布仅仅需要以下文件</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">|</div><div class="line">|--app</div><div class="line">|--vendor</div><div class="line">|--index.html</div></pre></td></tr></table></figure>
+<p>如果在server中依然存在一些mock的文件，那么需要将server文件夹一并发布</p>
+<h1 id="Tips"><a href="#Tips" class="headerlink" title="Tips"></a>Tips</h1><h2 id="将链接加入左侧栏"><a href="#将链接加入左侧栏" class="headerlink" title="将链接加入左侧栏"></a>将链接加入左侧栏</h2><p>修改<code>/server/sidebar-menu.json</code>文件即可</p>
+<p>以下是创建一个一级目录的简单例子</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">    <span class="attr">"text"</span>: <span class="string">"Welcome"</span>,</div><div class="line">    <span class="attr">"sref"</span>: <span class="string">"app.welcome"</span>,</div><div class="line">    <span class="attr">"icon"</span>: <span class="string">"icon-tag"</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="修改加载动画"><a href="#修改加载动画" class="headerlink" title="修改加载动画"></a>修改加载动画</h2><p>需要修改加载动画的样式，查阅<code>/master/js/modules/preloader/preloader.directive.js</code>文件，并且修改其中指定的css样式以及文件即可。</p>
+<p>如果需要临时屏蔽加载动画，注释掉index.jade文件中的<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">div(data-preloader)</div></pre></td></tr></table></figure></p>
+<h2 id="使用LazyLoad为页面加载第三方依赖"><a href="#使用LazyLoad为页面加载第三方依赖" class="headerlink" title="使用LazyLoad为页面加载第三方依赖"></a>使用LazyLoad为页面加载第三方依赖</h2><p>以下以实现一个加载动画效果为例。</p>
+<p>可能用到的插件有 <em>（可以按照自己的需求删减添加）</em></p>
+<ul>
+<li><code>whirl</code> </li>
+<li><code>spinkit</code></li>
+<li><code>loaders.css</code></li>
+</ul>
+<p><strong>首先，在<code>master</code>文件夹中使用bower安装以上包</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">bower install whirl spinkit loaders.css</div></pre></td></tr></table></figure>
+<p>安装完，之后，需要让gulp在打包的时候，将以上包的文件打包到<code>vendor</code>目录中。<br>修改<code>/master/vendor.json</code>文件，在其后面添加</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">"bower_components/loaders.css/loaders.css",</div><div class="line">"bower_components/spinkit/css/spinkit.css",</div><div class="line">"bower_components/whirl/dist/whirl.css"</div></pre></td></tr></table></figure>
+<p>这样，gulp就会将对应的文件添加到vendor目录中</p>
+<p><strong>在lazyload/lazyload.constants.js</strong>中配置第三方包</p>
+<p>在scripts中添加以下代码<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//spinner用到的库</span></div><div class="line"><span class="string">'loaders.css'</span>:          [<span class="string">'vendor/loaders.css/loaders.css'</span>],</div><div class="line"><span class="string">'spinkit'</span>:              [<span class="string">'vendor/spinkit/css/spinkit.css'</span>],</div><div class="line"><span class="string">'whirl'</span>:                [<span class="string">'vendor/whirl/dist/whirl.css'</span>]</div></pre></td></tr></table></figure></p>
+<p>或者<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="string">'spinner'</span>:          [<span class="string">'vendor/loaders.css/loaders.css'</span>,</div><div class="line">                     <span class="string">'vendor/spinkit/css/spinkit.css'</span>,</div><div class="line">                     <span class="string">'vendor/whirl/dist/whirl.css'</span>]</div></pre></td></tr></table></figure></p>
+<p><strong>在路由配置中为页面添加对应的引用</strong></p>
+<p>在<code>/master/js/modules/routes/routes.config.js</code> 文件中为对应的路由添加引用</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">.state(<span class="string">'app.moduleName'</span>, &#123;</div><div class="line">    <span class="attr">resolve</span>: helper.resolveFor(<span class="string">'loaders.css'</span>，<span class="string">'spinkit'</span>,<span class="string">'whirl'</span>)</div><div class="line">&#125;)</div></pre></td></tr></table></figure>
+<p>如果是第二种写法，则使用</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">.state(<span class="string">'app.moduleName'</span>, &#123;</div><div class="line">    <span class="attr">resolve</span>: helper.resolveFor(<span class="string">'spinner'</span>)</div><div class="line">&#125;)</div></pre></td></tr></table></figure>
+<p>这时，在对应的页面加载的时候，可以看到资源已经被加载进来</p>
+<p><img src="http://o93mwnwp7.bkt.clouddn.com/github/angleReslove.png" alt="spinner"></p>
+<p><strong>使用插件为我们提供的功能</strong></p>
+<p>在jade文件中，添加测试效果，即可看到对应的加载动画<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">.row</div><div class="line">  .col-md-4</div><div class="line">    .panel.panel-default</div><div class="line">      .panel-heading</div><div class="line">        h5 Folding Cube</div><div class="line">      .panel-body.loader-demo.loader-demo-sk</div><div class="line">        .sk-folding-cube</div><div class="line">          .sk-cube1.sk-cube</div><div class="line">          .sk-cube2.sk-cube</div><div class="line">          .sk-cube4.sk-cube</div><div class="line">          .sk-cube3.sk-cube</div></pre></td></tr></table></figure></p>
+<p><img src="http://o93mwnwp7.bkt.clouddn.com/github/angle-spinner.gif" alt="spinner"></p>
+<p>更多效果可以参阅<br> <a href="http://jh3y.github.io/whirl/" target="_blank" rel="external">whirl</a><br> <a href="http://tobiasahlin.com/spinkit/" target="_blank" rel="external">spinkit</a><br> <a href="https://connoratherton.com/loaders" target="_blank" rel="external">loaders.css</a></p>
+<p>或者官方Demo中的<code>/app/spinners</code>页面</p>
+<blockquote>
+<p><a href="https://github.com/mrxf" target="_blank" rel="external">@mrxf</a> 原文地址:<a href="https://mrxf.github.io/2016/11/21/Material%E6%A0%B7%E5%BC%8F%E7%9A%84Angle%E6%A8%A1%E6%9D%BF%E5%BC%80%E5%8F%91%E4%BB%8B%E7%BB%8D/" target="_blank" rel="external">mrxf.github.io/Material…</a></p>
+</blockquote>
+
+            </article>
+            
+                <div class="share">
+                    <!--开启分享-->
+<div class="share-component" data-disabled="google,twitter,facebook" data-description="Angle是一款强大的后台界面模板，提供了包括jQue..."></div>
+
+<script src="/js/share.min.js"></script>
+
+                </div>    
+            
+            
+                
+<div class="comments">
+	<div class="ds-thread" data-thread-key="Material样式的Angle模板开发介绍" data-title="基于Material样式的Angle模板开发介绍" data-url="http://yoursite.com/2016/11/21/Material样式的Angle模板开发介绍/"></div>
+	<script type="text/javascript">
+	var duoshuoQuery = {short_name:"undefined"};
+		(function() {
+			var ds = document.createElement('script');
+			ds.type = 'text/javascript';ds.async = true;
+			ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+			ds.charset = 'UTF-8';
+			(document.getElementsByTagName('head')[0]
+			 || document.getElementsByTagName('body')[0]).appendChild(ds);
+		})();
+	</script>
+</div>
+
+            
+        </div>
+        <div class="column one-fourth">
+            
+                
+                
+
+
+<h3>Post Directory</h3>
+
+<div id="post-directory-module">
+	<section class="post-directory">
+		<p><strong class="toc-title">文章目录</strong></p>
+		<ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#环境"><span class="toc-text">环境</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#文件夹介绍"><span class="toc-text">文件夹介绍</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#开发环境"><span class="toc-text">开发环境</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#打包发布项目"><span class="toc-text">打包发布项目</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#开发"><span class="toc-text">开发</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#路由"><span class="toc-text">路由</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#添加新的state"><span class="toc-text">添加新的state</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Module-与-Controller"><span class="toc-text">Module 与 Controller</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#表现页面Jade-pug"><span class="toc-text">表现页面Jade (pug)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#样式-Sass或Less"><span class="toc-text">样式 Sass或Less</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Hello-World！"><span class="toc-text">Hello World！</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#部署"><span class="toc-text">部署</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Tips"><span class="toc-text">Tips</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#将链接加入左侧栏"><span class="toc-text">将链接加入左侧栏</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#修改加载动画"><span class="toc-text">修改加载动画</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#使用LazyLoad为页面加载第三方依赖"><span class="toc-text">使用LazyLoad为页面加载第三方依赖</span></a></li></ol></li></ol>
+	</section>
+</div>
+            
+        </div>
+    </div>
+</section>
+
+<footer class="container">
+    <div class="site-footer" role="contentinfo">
+        <div class="copyright left mobile-block">
+            © 2016
+            <span title="yumemor">rain Whisper</span>
+            <a href="javascript:window.scrollTo(0,0)" class="right mobile-visible">TOP</a>
+        </div>
+
+        <ul class="site-footer-links right mobile-hidden">
+            <li>
+                <a href="javascript:window.scrollTo(0,0)">TOP</a>
+            </li>
+        </ul>
+
+        <a href="https://github.com/yumemor/hexo-theme-primer" target="_blank" aria-label="view source code">
+            <span class="mega-octicon octicon-mark-github" title="GitHub"></span>
+        </a>
+
+        <ul class="site-footer-links mobile-hidden">
+            
+                
+                    <li>
+                        <a href="/"  title="首页">首页</a>
+                    </li>
+                    
+                
+                    <li>
+                        <a href="/categories/"  title="分类">分类</a>
+                    </li>
+                    
+                
+                    <li>
+                        <a href="/open-source/"  title="开源项目">开源项目</a>
+                    </li>
+                    
+                
+                    <li>
+                        <a href="/message/"  title="留言板">留言板</a>
+                    </li>
+                    
+                        <li>
+                            <a href="/atom.xml">
+                                <span class="octicon octicon-rss" style="color:orange;"></span>
+                            </a>
+                        </li>
+        </ul>
+    </div>
+</footer>
+
+
+		<script src="/js/geopattern.js"></script>
+
+		
+			<script src="/js/toc.js"></script>
+		
+
+		<script src="/js/highlight.pack.js"></script>
+		<script src="/lib/fancybox/jquery.fancybox-1.3.4.pack.js"></script>
+
+		<script src="/js/index.js"></script>
+
+		 <script src="/js/popular_repo.js"></script> 
+
+	</body>
+</html>
